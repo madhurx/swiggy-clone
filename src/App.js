@@ -1,9 +1,9 @@
-
-
+import Head from "./Components/Header/Head";
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Head />
     </div>
   );
 }
