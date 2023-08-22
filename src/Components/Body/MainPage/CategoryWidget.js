@@ -55,13 +55,16 @@ const CategoryWidget = () => {
         </div>
 
         <div className="grid grid-cols-6 my-2">
-          {allCategory.length === 0 ? (
-            () => {
-              for (let i = 1; i <= 6; i++) {
-                <CategoryShimmer />
-              }
-            }
-          ) : (
+          {allCategory.length === 0 ? 
+            <>
+            <CategoryShimmer/>
+            <CategoryShimmer/>
+            <CategoryShimmer/>
+            <CategoryShimmer/>
+            <CategoryShimmer/>
+            <CategoryShimmer/>
+            </>
+           : (
             <>
               {allCategory.length > 6 ? (
                 <>
