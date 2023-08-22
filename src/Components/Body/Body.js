@@ -1,6 +1,6 @@
 import React from 'react'
-import BodyBanner from './BodyBanner'
-import CategoryWidget from './CategoryWidget'
+import BodyBanner from './MainPage/BodyBanner'
+import CategoryWidget from './MainPage/CategoryWidget'
 
 const Body = () => {
   return (

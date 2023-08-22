@@ -1,5 +1,5 @@
 import React from "react";
-import BannerImage from '../../assets/images/bannerImg.webp'
+import BannerImage from '../../../assets/images/bannerImg.webp'
 import TimelineIcon from '@mui/icons-material/Timeline';
 import {deepOrange} from '@mui/material/colors';
 
