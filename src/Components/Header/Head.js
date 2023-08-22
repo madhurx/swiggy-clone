@@ -3,7 +3,7 @@ import SwiggyLogo from "../../assets/images/swiggyLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NearMeIcon from "@mui/icons-material/NearMe";
- import { orange } from '@mui/material/colors';
+ import { orange, grey } from '@mui/material/colors';
 
 const Head = () => {
   return (
@@ -20,16 +20,16 @@ const Head = () => {
         </div>
       </div>
 
-      <div className="col-span-7 text-center  px-3 py-1 flex">
-        <input type="text" className="bg-slate-200 rounded-s-lg w-4/6 h-12" />
-        <button className="bg-slate-200 rounded-e-lg h-12 w-1/6">
+      <div className="col-span-7 text-center  px-3 flex">
+        <input type="text" className="bg-slate-200 rounded-s-lg w-8/12 h-14 ps-4" placeholder="Search for restaurant and food"/>
+        <button className="bg-slate-200 rounded-e-lg h-14 w-1/12 ">
           <SearchIcon fontSize="medium" color="disabled" />
         </button>
       </div>
 
-      <div className="col-span-1">
-        <div className="justify-self-start">
-          <AccountCircleIcon fontSize="large"/>
+      <div className="col-span-1 text-start">
+        <div className="">
+          <AccountCircleIcon style={{ fontSize: 50, color: grey[800]}} />
         </div>
       </div>
     </div>
