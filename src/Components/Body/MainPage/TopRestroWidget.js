@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CATEGORY_API_URL, CATEGORY_IMG_CDN } from "../../../utitls/constants";
+import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utitls/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -41,7 +41,7 @@ const TopRestroWidget = () => {
   };
 
   async function getTopRestro() {
-    const res = await fetch(CATEGORY_API_URL);
+    const res = await fetch(SWIGGY_API_URL);
     const response = await res.json();
     const json = await response?.data?.cards[2]?.card?.card?.gridElements
       ?.infoWithStyle?.restaurants;
@@ -73,7 +73,7 @@ const TopRestroWidget = () => {
                       return (
                         <div className="col-span-1 px-3" key={x?.info?.id}>
                           <img
-                            src={CATEGORY_IMG_CDN + x?.info?.cloudinaryImageId}
+                            src={SWIGGY_IMG_CDN + x?.info?.cloudinaryImageId}
                             alt={x?.info?.name}
                             className="object-cover object-center h-60 w-full rounded-2xl"
                           />
@@ -85,7 +85,7 @@ const TopRestroWidget = () => {
                               ⭐ {x?.info?.avgRating}
                             </h1>
                             <h1 className="font-light">
-                              {x?.info?.cuisines.join(", ")}
+                              {x?.info?.cuisines.slice(0, 5).join(", ")}
                             </h1>
                           </div>
                         </div>
@@ -99,7 +99,7 @@ const TopRestroWidget = () => {
                     return (
                       <div className="col-span-1 px-3" key={x?.info?.id}>
                         <img
-                          src={CATEGORY_IMG_CDN + x?.info?.cloudinaryImageId}
+                          src={SWIGGY_IMG_CDN + x?.info?.cloudinaryImageId}
                           alt={x?.info?.name}
                           className="object-cover object-center h-60 w-full rounded-2xl"
                         />
@@ -110,8 +110,8 @@ const TopRestroWidget = () => {
                           <h1 className="font-medium">
                             ⭐ {x?.info?.avgRating}
                           </h1>
-                          <h1 className="font-light">
-                            {x?.info?.cuisines.join(", ")}
+                          <h1 className="font-light text-sm">
+                            {x?.info?.cuisines.slice(0, 5).join(", ")}
                           </h1>
                         </div>
                       </div>
