@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SWIGGY_IMG_CDN, SWIGGY_API_URL } from "../../../utitls/constants";
+import { SWIGGY_IMG_CDN, SWIGGY_API_URL } from "../../../utils/constants";
 
 const Restaurant = () => {
   const [restro, setRestro] = useState([]);
