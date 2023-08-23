@@ -1,31 +1,40 @@
- async function getLocation() {
+ function getLocation() {
   if (navigator.geolocation) {
-    console.log(await navigator.geolocation.getCurrentPosition(showPosition, showError));
+  console.log(1);
+
+     navigator.geolocation.getCurrentPosition( showPosition,  showError);
   } else {
-    const m = ["Geolocation is not supported by this browser."];
+    return { res: "Geolocation is not supported by this browser." };
   }
 }
 
 function showPosition(position) {
-  let arr = [];
-  arr["latitude"] = position.coords.latitude;
-  arr["longitude"] = position.coords.longitude;
-  return arr;
+  console.log(position.coords.latitude);
 }
 
 function showError(error) {
   switch (error.code) {
     case error.PERMISSION_DENIED:
-      return ["User denied the request for Geolocation."];
+      return { res: "User denied the request for Geolocation."};
     case error.POSITION_UNAVAILABLE:
-      return ["Location information is unavailable."];
+      return { res: "Location information is unavailable."};
     case error.TIMEOUT:
-      return ["The request to get user location timed out."];
+      return { res: "The request to get user location timed out."};
     case error.UNKNOWN_ERROR:
-      return ["An unknown error occurred."];
+      return { res: "An unknown error occurred."};
     default:
-      return ["UNKNOWN REASON"];
+      return { res: "UNKNOWN REASON"};
   }
 }
 
-export const a = getLocation();
+// function getLocation (){
+//   return showPosition();
+// }
+
+// function showPosition (position)
+// {
+//   console.log(2);
+//   return {A: "AS"}
+// }
+
+export default getLocation;
