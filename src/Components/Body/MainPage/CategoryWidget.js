@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CATEGORY_API_URL, CATEGORY_IMG_CDN } from "../../../utitls/constants";
+import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utitls/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -40,7 +40,7 @@ const CategoryWidget = () => {
 
   async function getCategory() {
     try {
-      const response = await fetch(CATEGORY_API_URL);
+      const response = await fetch(SWIGGY_API_URL);
       const res = await response.json();
       let json = res?.data?.cards[1]?.card?.card?.imageGridCards?.info;
       setAllCategory(json);
@@ -73,7 +73,7 @@ const CategoryWidget = () => {
                       return (
                         <div className="col-span-1" key={info?.id}>
                           <img
-                            src={CATEGORY_IMG_CDN + info?.imageId}
+                            src={SWIGGY_IMG_CDN + info?.imageId}
                             alt={info?.action?.text}
                           />
                         </div>
@@ -87,7 +87,7 @@ const CategoryWidget = () => {
                     return (
                       <div className="col-span-1" key={info?.id}>
                         <img
-                          src={CATEGORY_IMG_CDN + info?.imageId}
+                          src={SWIGGY_IMG_CDN + info?.imageId}
                           alt={info?.action?.text}
                         />
                       </div>
