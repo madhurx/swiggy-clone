@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import SwiggyLogo from "../../assets/images/swiggyLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NearMeIcon from "@mui/icons-material/NearMe";
  import { orange, grey } from '@mui/material/colors';
+import LocationComponent from "../../utils/LocationComponent";
+import { useSelector } from "react-redux";
 
 const Head = () => {
+
+  const city = useSelector((store) => store.location.city);
+  const [locnStatus, setLocnStatus] = useState(city);
+  city ? setLocnStatus(city) : setLocnStatus("Location not set")
+
   return (
     <div className="px-5 py-3 shadow-lg shadow-gray-200 grid-flow-col grid items-center">
       <div className="col-span-1 justify-self-end flex">
@@ -16,7 +23,7 @@ const Head = () => {
         <div className="flex">
             <h1 className="text-gray-400 px-3">|</h1>
           <NearMeIcon fontSize="medium"  style={{ color: orange[600] }}/>
-          <h1 className="px-2">Set your location</h1>
+          <div className="px-2">{locnStatus}</div>
         </div>
       </div>
 
