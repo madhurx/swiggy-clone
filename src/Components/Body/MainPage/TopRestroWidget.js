@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utitls/constants";
+import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utils/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
