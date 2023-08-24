@@ -1,9 +1,9 @@
 
-// import React from 'react'
-// import {useSelector} from 'react-redux';
+// // import React from 'react'
+// // import {useSelector} from 'react-redux';
 
-// const getCordinates = () =>{
-// const latitude = useSelector();
+// // const getCordinates = () =>{
+// // const latitude = useSelector();
 
 // };
 
@@ -54,18 +54,18 @@
 // export default getLocation;
 
 
-import { useEffect } from 'react'
-import {useSelector, useDispatch} from 'react-redux';
-import {setLatitude} from './utils/redux/locationSlice';
+// import { useEffect } from 'react'
+// import {useSelector, useDispatch} from 'react-redux';
+// import {setLatitude} from './utils/redux/locationSlice';
 
-export const ueLocation = () => {
-    const latitude = useSelector(store => store.location.userData);
-      const dispatch = useDispatch(); 
+// export const ueLocation = () => {
+//     const latitude = useSelector(store => store.location.userData);
+//       const dispatch = useDispatch(); 
 
-      useEffect (() => {
-        navigator.geolocation.getCurrentPosition((location) => {
-            if (location) dispatch(setLatitude(location.coords));
-          });
+//       useEffect (() => {
+//         navigator.geolocation.getCurrentPosition((location) => {
+//             if (location) dispatch(setLatitude(location.coords));
+//           });
 
-      }, []);
-}
+//       }, []);
+// }

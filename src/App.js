@@ -6,13 +6,13 @@ import {useLocation} from "./utils/getCordinates";
 import C from "./C";
 import { Provider } from "react-redux";
 import store from './utils/redux/store';
+import LocationComponent from "./utils/LocationComponent";
 
 function App() {
-  console.log(useLocation);
 
   return (
     <Provider store={store}>
-      <C/>
+      <LocationComponent/>
       {/* <Head />
       <Body/>
       <Footer/> */}
