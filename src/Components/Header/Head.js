@@ -17,7 +17,7 @@ const Head = () => {
         <div className="flex">
             <h1 className="text-gray-400 px-3">|</h1>
           <NearMeIcon fontSize="medium"  style={{ color: orange[600] }}/>
-          <div className="px-2">{<LocationComponent/>}</div>
+          <div className="px-2">{ <LocationComponent/> }</div>
         </div>
       </div>
 

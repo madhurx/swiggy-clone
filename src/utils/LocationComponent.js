@@ -63,7 +63,7 @@ const LocationComponent = () => {
   }
 
   if (!latitude || !longitude) {
-    return <h1>Location not set</h1>;
+    return <h1>Set Your Location</h1>;
   } else {
     findCity();
     return <h1>{city}</h1>;
