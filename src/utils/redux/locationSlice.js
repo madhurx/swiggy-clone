@@ -4,29 +4,28 @@ const locationSlice = createSlice({
   name: "location",
   initialState: {
     coordinates: {
-      latitude: null,
+      latitude:   null,
       longitude: null,
       err: null,
     },
+    city: null,
   },
   reducers: {
     getLatitude: (state, action) => {
-      console.log(action);
-      state.userData = action.payload;
+      state.coordinates.latitude = action.payload;
     },
     getLongitude: (state, action) => {
-
-      console.log(action);
-
-      state.longitude = action.payload;
+      state.coordinates.longitude = action.payload;
     },
     getErr: (state, action) => {
-      console.log(action);
-
-      state.err = action.payload;
+      state.coordinates.err = action.payload;
     },
+    getCity: (state, action) =>
+    {
+      state.city = action.payload;
+    }
   },
 });
 
-export const { getLatitude, getLongitude, getErr } = locationSlice.actions;
+export const { getLatitude, getLongitude, getErr, getCity } = locationSlice.actions;
 export default locationSlice.reducer;

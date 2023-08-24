@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import NearMeIcon from "@mui/icons-material/NearMe";
  import { orange, grey } from '@mui/material/colors';
+import LocationComponent from "../../utils/LocationComponent";
 
 const Head = () => {
   return (
@@ -16,7 +17,7 @@ const Head = () => {
         <div className="flex">
             <h1 className="text-gray-400 px-3">|</h1>
           <NearMeIcon fontSize="medium"  style={{ color: orange[600] }}/>
-          <h1 className="px-2">Set your location</h1>
+          <div className="px-2">{<LocationComponent/>}</div>
         </div>
       </div>
 

@@ -1,12 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getErr, getLatitude, getLongitude } from "./redux/locationSlice";
+import {
+  getCity,
+  getErr,
+  getLatitude,
+  getLongitude,
+} from "./redux/locationSlice";
 
 const LocationComponent = () => {
-  const latitude = useSelector((state) => state.location.coordinates.latitude);
-  const longitude = useSelector((state) => state.location.coordinates.longitude);
-  const dispatch = useDispatch();
+  const latitude = useSelector((store) => store.location.coordinates.latitude);
+  const longitude = useSelector(
+    (store) => store.location.coordinates.longitude
+  );
+  const city = useSelector((store) => store.location.city);
 
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getLocation();
@@ -44,13 +52,22 @@ const LocationComponent = () => {
         break;
     }
   }
-  if(!latitude) return <h1>IF</h1>;   
 
-  return (
-    <div>
-      ELSE
-    </div>
-  );
+  async function findCity() {
+    const response = await fetch(
+      `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=BUgOO7xk6bhYpPsip6iEIvB0ruE2h99R&q=${latitude},${longitude}`
+    );
+    const res = await response.json();
+    const json = await res?.SupplementalAdminAreas[0]?.EnglishName;
+    await dispatch(getCity(json));
+  }
+
+  if (!latitude || !longitude) {
+    return <h1>Location not set</h1>;
+  } else {
+    findCity();
+    return <h1>{city}</h1>;
+  }
 };
 
 export default LocationComponent;
