@@ -52,3 +52,20 @@
 // // }
 
 // export default getLocation;
+
+
+import { useEffect } from 'react'
+import {useSelector, useDispatch} from 'react-redux';
+import {setLatitude} from './utils/redux/locationSlice';
+
+export const ueLocation = () => {
+    const latitude = useSelector(store => store.location.userData);
+      const dispatch = useDispatch(); 
+
+      useEffect (() => {
+        navigator.geolocation.getCurrentPosition((location) => {
+            if (location) dispatch(setLatitude(location.coords));
+          });
+
+      }, []);
+}
