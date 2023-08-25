@@ -9,6 +9,7 @@ const locationSlice = createSlice({
       err: null,
     },
     city: null,
+    street:null,
   },
   reducers: {
     getLatitude: (state, action) => {
@@ -23,9 +24,13 @@ const locationSlice = createSlice({
     getCity: (state, action) =>
     {
       state.city = action.payload;
+    },
+    getStreet: (state, action) =>
+    {
+      state.street = action.payload;
     }
   },
 });
 
-export const { getLatitude, getLongitude, getErr, getCity } = locationSlice.actions;
+export const { getLatitude, getLongitude, getErr, getCity, getStreet } = locationSlice.actions;
 export default locationSlice.reducer;

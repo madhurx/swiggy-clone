@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utils/constants";
+import { SWIGGY_IMG_CDN } from "../../../utils/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -8,6 +8,9 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { deepOrange } from "@mui/material/colors";
 import CategoryShimmer from "../Shimmers/CategoryShimmer";
 import TopRestroShimmer from "../Shimmers/TopRestroShimmer";
+import { useSelector } from "react-redux";
+import store from "../../../utils/redux/store";
+import LocationComponent from "../../../utils/LocationComponent";
 
 const TopRestroWidget = () => {
   const [topRestro, setTopRestro] = useState([]);
@@ -40,7 +43,23 @@ const TopRestroWidget = () => {
     },
   };
 
+  async function getFoodAPI() {
+    const latitude = store.getState().location.coordinates.latitude;
+    const longitude = store.getState().location.coordinates.longitude;
+    if (latitude && longitude) {
+      const URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
+      return URL;
+    }
+    else{
+      console.log("A");
+      window.setTimeout(getFoodAPI, 1000);
+      console.log("3");
+
+    }
+  }
+
   async function getTopRestro() {
+    const SWIGGY_API_URL =  await getFoodAPI();
     const res = await fetch(SWIGGY_API_URL);
     const response = await res.json();
     const json = await response?.data?.cards[2]?.card?.card?.gridElements
@@ -53,7 +72,7 @@ const TopRestroWidget = () => {
       <div className="border-b-2">
         <div className="my-5">
           <h1 className="text-2xl font-bold">
-            Top restaurant chains in Bangalore
+            <LocationComponent type="cityOnly"/>
           </h1>
         </div>
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utils/constants";
+import { SWIGGY_IMG_CDN } from "../../../utils/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -7,9 +7,17 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { deepOrange } from "@mui/material/colors";
 import CategoryShimmer from "../Shimmers/CategoryShimmer";
+import { useSelector } from "react-redux";
 
 const CategoryWidget = () => {
   const [allCategory, setAllCategory] = useState([]);
+
+  const latitude = useSelector((store) => store.location.coordinates.latitude);
+  const longitude = useSelector(
+    (store) => store.location.coordinates.longitude
+  );
+
+  const SWIGGY_API_URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
 
   useEffect(() => {
     getCategory();

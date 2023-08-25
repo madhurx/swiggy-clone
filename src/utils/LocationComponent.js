@@ -5,6 +5,7 @@ import {
   getErr,
   getLatitude,
   getLongitude,
+  getStreet,
 } from "./redux/locationSlice";
 import store from "./redux/store";
 
@@ -13,7 +14,9 @@ const LocationComponent = (props) => {
   const longitude = useSelector(
     (store) => store.location.coordinates.longitude
   );
+  const street = useSelector((store) => store.location.street);
   const city = useSelector((store) => store.location.city);
+  
 
 
   const dispatch = useDispatch();
@@ -59,22 +62,26 @@ const LocationComponent = (props) => {
     const response = await fetch(`http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`);
     const res = await response.json();
     const json = await res?.data[0];
-    await dispatch(getCity(json?.street + ", " + json?.county ));
+    await dispatch(getStreet(json?.street ));
+    await dispatch(getCity(json?.county ));
   }
 
   if (!latitude || !longitude) {
     return <h1>Set Your Location</h1>;
   }
-  else if(props.type == "header")
+  else if(props.type === "streetCity")
   {
-    
     findCity();
-    return <h1>{city}</h1>;
-
+    return (<div>{city + ", " + street} </div>)
+  }
+  else if(props.type === "cityOnly")
+  {
+    findCity();
+    return (<div>{city} </div>)
   }
    else {
     findCity();
-    return <h1>{city}</h1>;
+    return {city}
   }
 };
 

@@ -1,11 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { SWIGGY_IMG_CDN, SWIGGY_API_URL } from "../../../utils/constants";
+import { SWIGGY_IMG_CDN } from "../../../utils/constants";
+import { useSelector } from "react-redux";
 
 const Restaurant = () => {
   const [restro, setRestro] = useState([]);
+
   useEffect(() => {
     getRestro();
   }, []);
+
+  const latitude = useSelector((store) => store.location.coordinates.latitude);
+  const longitude = useSelector(
+    (store) => store.location.coordinates.longitude
+  );
+
+  const SWIGGY_API_URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
 
   async function getRestro() {
     const response = await fetch(SWIGGY_API_URL);
