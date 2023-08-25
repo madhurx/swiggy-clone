@@ -8,10 +8,13 @@ import {
 } from "./redux/locationSlice";
 import store from "./redux/store";
 
-const LocationComponent = () => {
-  const latitude = store.getState().location.coordinates.latitude;
-  const longitude = store.getState().location.coordinates.longitude;
-  const city = store.getState().location.city;
+const LocationComponent = (props) => {
+  const latitude = useSelector((store) => store.location.coordinates.latitude);
+  const longitude = useSelector(
+    (store) => store.location.coordinates.longitude
+  );
+  const city = useSelector((store) => store.location.city);
+
 
   const dispatch = useDispatch();
 
@@ -55,13 +58,21 @@ const LocationComponent = () => {
   async function findCity() {
     const response = await fetch(`http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`);
     const res = await response.json();
-    const json = await res?.data[0]?.label;
-    await dispatch(getCity(json));
+    const json = await res?.data[0];
+    await dispatch(getCity(json?.street + ", " + json?.county ));
   }
 
   if (!latitude || !longitude) {
     return <h1>Set Your Location</h1>;
-  } else {
+  }
+  else if(props.type == "header")
+  {
+    
+    findCity();
+    return <h1>{city}</h1>;
+
+  }
+   else {
     findCity();
     return <h1>{city}</h1>;
   }

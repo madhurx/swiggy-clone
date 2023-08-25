@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import SwiggyLogo from "../../assets/images/swiggyLogo.png";
 import SearchIcon from "@mui/icons-material/Search";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -9,15 +9,19 @@ import { useSelector } from "react-redux";
 import store from "../../utils/redux/store";
 
 const Head = () => {
+  // console.log(LocationComponent());
 
-  const city = store.getState().location.city;
+  // useEffect( () => {
+  //   LocationComponent()
+  // }, [city]);
 
-  // const [locnStatus, setLocnStatus] = useState(city);
+  // const [locnStatus, setLocnStatus] = useState(LocationComponent());
+  // setLocnStatus(LocationComponent());
   // city ? setLocnStatus(city) : setLocnStatus("Location not set")
 
   return (
     <div className="px-5 py-3 shadow-lg shadow-gray-200 grid-flow-col grid items-center">
-      <LocationComponent/>
+
       <div className="col-span-1 justify-self-end flex">
         <img src={SwiggyLogo} className="h-10" />
       </div>
@@ -26,7 +30,7 @@ const Head = () => {
         <div className="flex">
             <h1 className="text-gray-400 px-3">|</h1>
           <NearMeIcon fontSize="medium"  style={{ color: orange[600] }}/>
-          <div className="px-2">{city}</div>
+          <div className="px-2"><LocationComponent type = "header"/></div>
         </div>
       </div>
 

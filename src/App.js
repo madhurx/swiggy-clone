@@ -9,8 +9,8 @@ function App() {
   return (
     <Provider store={store}>
       <Head />
-      <Body/>
-      <Footer/>
+      {/* <Body/>
+      <Footer/> */}
     </Provider>
   );
 }
