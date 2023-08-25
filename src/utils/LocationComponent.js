@@ -6,13 +6,12 @@ import {
   getLatitude,
   getLongitude,
 } from "./redux/locationSlice";
+import store from "./redux/store";
 
 const LocationComponent = () => {
-  const latitude = useSelector((store) => store.location.coordinates.latitude);
-  const longitude = useSelector(
-    (store) => store.location.coordinates.longitude
-  );
-  const city = useSelector((store) => store.location.city);
+  const latitude = store.getState().location.coordinates.latitude;
+  const longitude = store.getState().location.coordinates.longitude;
+  const city = store.getState().location.city;
 
   const dispatch = useDispatch();
 
@@ -54,11 +53,9 @@ const LocationComponent = () => {
   }
 
   async function findCity() {
-    const response = await fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=BUgOO7xk6bhYpPsip6iEIvB0ruE2h99R&q=${latitude},${longitude}`
-    );
+    const response = await fetch(`http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`);
     const res = await response.json();
-    const json = await res?.SupplementalAdminAreas[0]?.EnglishName;
+    const json = await res?.data[0]?.label;
     await dispatch(getCity(json));
   }
 
