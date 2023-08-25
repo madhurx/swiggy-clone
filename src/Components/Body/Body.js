@@ -7,10 +7,10 @@ import Restaurants from './MainPage/Restaurants'
 const Body = () => {
   return (
     <div>
-      {/* <BodyBanner/>
-      <CategoryWidget/> */}
+      <BodyBanner/>
+      <CategoryWidget/>
       <TopRestroWidget/>
-      {/* <Restaurants/> */}
+      <Restaurants/>
     </div>
   )
 }

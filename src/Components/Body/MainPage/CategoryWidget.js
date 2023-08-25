@@ -8,16 +8,10 @@ import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { deepOrange } from "@mui/material/colors";
 import CategoryShimmer from "../Shimmers/CategoryShimmer";
 import { useSelector } from "react-redux";
+import store from "../../../utils/redux/store";
 
 const CategoryWidget = () => {
   const [allCategory, setAllCategory] = useState([]);
-
-  const latitude = useSelector((store) => store.location.coordinates.latitude);
-  const longitude = useSelector(
-    (store) => store.location.coordinates.longitude
-  );
-
-  const SWIGGY_API_URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
 
   useEffect(() => {
     getCategory();
@@ -45,9 +39,23 @@ const CategoryWidget = () => {
       width: "600%",
     },
   };
+  
+  async function getFoodAPI() {
+    const latitude = store.getState().location.coordinates.latitude;
+    const longitude = store.getState().location.coordinates.longitude;
+    if (latitude && longitude) {
+      const URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
+      return URL;
+    }
+    else{
+      console.log("A");
+      window.setTimeout(getFoodAPI, 1000);
+    }
+  }
 
   async function getCategory() {
     try {
+    const SWIGGY_API_URL =  await getFoodAPI();
       const response = await fetch(SWIGGY_API_URL);
       const res = await response.json();
       let json = res?.data?.cards[1]?.card?.card?.imageGridCards?.info;

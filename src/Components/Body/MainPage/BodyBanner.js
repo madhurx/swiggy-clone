@@ -2,6 +2,7 @@ import React from "react";
 import BannerImage from '../../../assets/images/bannerImg.webp'
 import TimelineIcon from '@mui/icons-material/Timeline';
 import {deepOrange} from '@mui/material/colors';
+import LocationComponent from "../../../utils/LocationComponent";
 
 const BodyBanner = () => {
   return (
@@ -9,7 +10,7 @@ const BodyBanner = () => {
       <div className="grid-cols-2 grid">
 
         <div className="col-span-1 content-center grid ps-32 pe-44 pb-16 pt-12">
-          <h1 className="font-bold text-5xl text-gray-700">Order Food Online in Delhi</h1>
+          <h1 className="font-bold text-4xl text-gray-700">Order Food Online in <LocationComponent type = "cityOnly"/></h1>
           <h1 className="ps-10 pt-2"><TimelineIcon style={{ fontSize: 55, color: deepOrange[400]}}/></h1>
         </div>
 

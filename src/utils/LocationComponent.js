@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCity,
@@ -7,7 +7,6 @@ import {
   getLongitude,
   getStreet,
 } from "./redux/locationSlice";
-import store from "./redux/store";
 
 const LocationComponent = (props) => {
   const latitude = useSelector((store) => store.location.coordinates.latitude);
@@ -17,8 +16,6 @@ const LocationComponent = (props) => {
   const street = useSelector((store) => store.location.street);
   const city = useSelector((store) => store.location.city);
   
-
-
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -67,17 +64,17 @@ const LocationComponent = (props) => {
   }
 
   if (!latitude || !longitude) {
-    return <h1>Set Your Location</h1>;
+    return <span>Set Your Location</span>;
   }
   else if(props.type === "streetCity")
   {
     findCity();
-    return (<div>{city + ", " + street} </div>)
+    return (<span>{city + ", " + street} </span>)
   }
   else if(props.type === "cityOnly")
   {
     findCity();
-    return (<div>{city} </div>)
+    return (<span>{city} </span>)
   }
    else {
     findCity();

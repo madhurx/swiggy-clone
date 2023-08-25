@@ -53,8 +53,6 @@ const TopRestroWidget = () => {
     else{
       console.log("A");
       window.setTimeout(getFoodAPI, 1000);
-      console.log("3");
-
     }
   }
 
