@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { SWIGGY_API_URL, SWIGGY_IMG_CDN } from "../../../utils/constants";
+import { SWIGGY_IMG_CDN } from "../../../utils/constants";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
@@ -7,6 +7,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { deepOrange } from "@mui/material/colors";
 import CategoryShimmer from "../Shimmers/CategoryShimmer";
+import { useSelector } from "react-redux";
+import store from "../../../utils/redux/store";
 
 const CategoryWidget = () => {
   const [allCategory, setAllCategory] = useState([]);
@@ -37,9 +39,23 @@ const CategoryWidget = () => {
       width: "600%",
     },
   };
+  
+  async function getFoodAPI() {
+    const latitude = store.getState().location.coordinates.latitude;
+    const longitude = store.getState().location.coordinates.longitude;
+    if (latitude && longitude) {
+      const URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
+      return URL;
+    }
+    else{
+      console.log("A");
+      window.setTimeout(getFoodAPI, 1000);
+    }
+  }
 
   async function getCategory() {
     try {
+    const SWIGGY_API_URL =  await getFoodAPI();
       const response = await fetch(SWIGGY_API_URL);
       const res = await response.json();
       let json = res?.data?.cards[1]?.card?.card?.imageGridCards?.info;

@@ -1,19 +1,21 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCity,
   getErr,
   getLatitude,
   getLongitude,
+  getStreet,
 } from "./redux/locationSlice";
 
-const LocationComponent = () => {
+const LocationComponent = (props) => {
   const latitude = useSelector((store) => store.location.coordinates.latitude);
   const longitude = useSelector(
     (store) => store.location.coordinates.longitude
   );
+  const street = useSelector((store) => store.location.street);
   const city = useSelector((store) => store.location.city);
-
+  
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,19 +56,29 @@ const LocationComponent = () => {
   }
 
   async function findCity() {
-    const response = await fetch(
-      `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=BUgOO7xk6bhYpPsip6iEIvB0ruE2h99R&q=${latitude},${longitude}`
-    );
+    const response = await fetch(`http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`);
     const res = await response.json();
-    const json = await res?.SupplementalAdminAreas[0]?.EnglishName;
-    await dispatch(getCity(json));
+    const json = await res?.data[0];
+    await dispatch(getStreet(json?.street ));
+    await dispatch(getCity(json?.county ));
   }
 
   if (!latitude || !longitude) {
-    return <h1>Set Your Location</h1>;
-  } else {
+    return <span>Set Your Location</span>;
+  }
+  else if(props.type === "streetCity")
+  {
     findCity();
-    return <h1>{city}</h1>;
+    return (<span>{city + ", " + street} </span>)
+  }
+  else if(props.type === "cityOnly")
+  {
+    findCity();
+    return (<span>{city} </span>)
+  }
+   else {
+    findCity();
+    return {city}
   }
 };
 
