@@ -38,7 +38,7 @@ const SearchLocation = () => {
             <div className="col-span-12 px-20">
               <input
                 type="text"
-                className="border border-gray-500 w-9/12 py-4 px-6 border-r-0 font-semibold"
+                className="border border-gray-500 w-9/12 py-4 px-6 border-r-0 font-semibold focus:border-orange-500 focus:outline-none focus:ring-0"
                 placeholder="Enter your delivery location"
               />
               <button className="py-4 bg-orange-500 border-orange-500 border px-6 font-bold text-white">
