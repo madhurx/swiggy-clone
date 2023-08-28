@@ -31,11 +31,11 @@ const MobileAd = () => {
         </div>
         <div className="col-span-1 flex flex-nowrap">
           <div className="h-[485px] w-[380px] mb-20 p-0">
-            <img src={mobileImg1} alt="mobileImg1" />
+            <img src={mobileImg1} alt="mobileImg1" className="h-[485px]"/>
           </div>
 
           <div className="h-[485px] w-[380px] mt-20 p-0">
-            <img src={mobileImg2} alt="mobileImg2" />
+            <img src={mobileImg2} alt="mobileImg2" className="h-[485px]"/>
           </div>
         </div>
       </div>
