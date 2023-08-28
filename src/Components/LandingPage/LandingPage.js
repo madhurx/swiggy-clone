@@ -7,9 +7,9 @@ import AboutFooter from './AboutFooter'
 const LandingPage = () => {
   return (
     <div>
-      {/* <SearchLocation/>
+      <SearchLocation/>
       <LandingPgInfo/>
-      <MobileAd/> */}
+      <MobileAd/>
       <AboutFooter/>
       
     </div>

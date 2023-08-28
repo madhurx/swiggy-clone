@@ -1,6 +1,8 @@
 import React from "react";
 import googlePlay from "../../../src/assets/images/GooglePlay.webp";
 import appStore from "../../../src/assets/images/AppStore.webp";
+import swiggyBW from "../../../src/assets/images/swiggyLogoBW.webp";
+import { Facebook, Instagram, Pinterest, Twitter } from "@mui/icons-material";
 
 const AboutFooter = () => {
   return (
@@ -62,49 +64,61 @@ const AboutFooter = () => {
           <div className="col-span-1">
             <img
               src={appStore}
-              className="border-white border-2 rounded-xl mb-10" alt="appStore"
+              className="border-white border-2 rounded-xl mb-10"
+              alt="appStore"
             />
             <img
               src={googlePlay}
-              className="border-white border-2 rounded-xl" alt="googlePlay"
+              className="border-white border-2 rounded-xl"
+              alt="googlePlay"
             />
           </div>
         </div>
       </div>
 
-        <div className="px-16 py-7">
-          <hr className="border-gray-500 border-[0.1px]"/>
-        </div>
+      <div className="px-16 py-7">
+        <hr className="border-gray-500 border-[0.1px]" />
+      </div>
 
+      <div>
         <div>
-          <div>
-            <h1 className="text-gray-400 font-semibold px-16 pb-5">EXPLORE EVERY RESTAURANTS NEAR ME</h1>
-          </div>
-
-          <div className="px-16 text-white grid grid-cols-2">
-            <h1 className="justify-self-start grid col-span-1">Explore Restaurants Near Me</h1>
-            <h1 className="justify-self-end grid col-span-1">Explore Top Rated Restaurants Near Me</h1>
-
-          </div>
+          <h1 className="text-gray-400 font-semibold px-16 pb-5">
+            EXPLORE EVERY RESTAURANTS NEAR ME
+          </h1>
         </div>
 
-        <div className="px-16 py-7">
-          <hr className="border-gray-500 border-[0.1px]"/>
+        <div className="px-16 text-white grid grid-cols-2">
+          <h1 className="justify-self-start grid col-span-1">
+            Explore Restaurants Near Me
+          </h1>
+          <h1 className="justify-self-end grid col-span-1">
+            Explore Top Rated Restaurants Near Me
+          </h1>
         </div>
+      </div>
 
-        <div>
-          <div>
-            <h1 className="text-gray-400 font-semibold px-16 pb-5">EXPLORE EVERY RESTAURANTS NEAR ME</h1>
-          </div>
+      <div className="px-16 py-7">
+        <hr className="border-gray-500 border-[0.1px]" />
+      </div>
 
-          <div className="px-16 text-white grid grid-cols-2">
-            <h1 className="justify-self-start grid col-span-1">Explore Restaurants Near Me</h1>
-            <h1 className="justify-self-end grid col-span-1">Explore Top Rated Restaurants Near Me</h1>
-
-          </div>
+      <div>
+        <div className="px-16 text-white grid grid-cols-3 pb-7">
+          <img
+            src={swiggyBW}
+            alt="swiggyLogo"
+            className="h-11 justify-self-start grid col-span-1"
+          />
+          <h1 className="justify-self-center grid col-span-1 text-xl">
+            © 2023 Swiggy
+          </h1>
+          <h1 className="justify-self-end col-span-1 flex ">
+            <Facebook sx={{ color: "white" }} className="me-3" />
+            <Pinterest sx={{ color: "white" }} className="mx-3" />
+            <Instagram sx={{ color: "white" }} className="mx-3" />
+            <Twitter sx={{ color: "white" }} className="ms-3" />
+          </h1>
         </div>
-
-
+      </div>
     </div>
   );
 };
