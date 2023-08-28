@@ -2,13 +2,15 @@ import React from 'react'
 import SearchLocation from './SearchLocation'
 import LandingPgInfo from './LandingPgInfo'
 import MobileAd from './MobileAd'
+import AboutFooter from './AboutFooter'
 
 const LandingPage = () => {
   return (
     <div>
-      <SearchLocation/>
+      {/* <SearchLocation/>
       <LandingPgInfo/>
-      <MobileAd/>
+      <MobileAd/> */}
+      <AboutFooter/>
       
     </div>
   )
