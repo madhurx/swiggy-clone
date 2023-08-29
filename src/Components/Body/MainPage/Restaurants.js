@@ -19,7 +19,6 @@ const Restaurant = () => {
       return URL;
     }
     else{
-      console.log("A");
       window.setTimeout(getFoodAPI, 1000);
     }
   }

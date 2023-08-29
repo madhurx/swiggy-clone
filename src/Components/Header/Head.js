@@ -23,7 +23,7 @@ const Head = () => {
     <div className="px-5 py-3 shadow-lg shadow-gray-200 grid-flow-col grid items-center">
 
       <div className="col-span-1 justify-self-end flex">
-        <img src={SwiggyLogo} className="h-10" />
+        <img src={SwiggyLogo} className="h-10" alt="swiggyLogo"/>
       </div>
 
       <div className="col-span-3 px-3">

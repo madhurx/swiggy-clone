@@ -8,10 +8,10 @@ import LocationComponent from '../../utils/LocationComponent'
 const LandingPage = () => {
   return (
     <div>
-      {/* <LocationComponent type="landingHeader"/> */}
-      <SearchLocation/>
+      
+      {/* <SearchLocation/>
       <LandingPgInfo/>
-      <MobileAd/>
+      <MobileAd/> */}
       <AboutFooter/>
       
     </div>

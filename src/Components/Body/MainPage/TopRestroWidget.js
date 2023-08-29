@@ -17,7 +17,7 @@ const TopRestroWidget = () => {
 
   useEffect(() => {
     getTopRestro();
-  }, []);
+  },[]);
 
   var settings = {
     dots: false,
@@ -44,14 +44,13 @@ const TopRestroWidget = () => {
   };
 
   async function getFoodAPI() {
-    const latitude = store.getState().location.coordinates.latitude;
-    const longitude = store.getState().location.coordinates.longitude;
+    const latitude = await store.getState().location.coordinates.latitude;
+    const longitude = await store.getState().location.coordinates.longitude;
     if (latitude && longitude) {
-      const URL = `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
+      const URL = await `https://instafood.onrender.com/api/restaurants?lat=${latitude}&lng=${longitude}`;
       return URL;
     }
     else{
-      console.log("A");
       window.setTimeout(getFoodAPI, 1000);
     }
   }

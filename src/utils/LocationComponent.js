@@ -15,7 +15,7 @@ const LocationComponent = (props) => {
   );
   const street = useSelector((store) => store.location.street);
   const city = useSelector((store) => store.location.city);
-  
+
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -56,35 +56,43 @@ const LocationComponent = (props) => {
   }
 
   async function findCity() {
-    const response = await fetch(`http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`);
+    const response = await fetch(
+      `http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`
+    );
     const res = await response.json();
     const json = await res?.data[0];
     console.log(json);
-    await dispatch(getStreet(json?.street ));
-    await dispatch(getCity(json?.county ));
+    await dispatch(getStreet(json?.street));
+    await dispatch(getCity(json?.county));
   }
 
-  if ((!latitude || !longitude) && (props.type === "body")) {
+  if (props.type === "landingHeader" && (!latitude || !longitude)) {
+    console.log(1);
+    // findCity();
     return <span>Set Your Location</span>;
-  }
-  else if(props.type === "streetCity")
-  {
+
+  } else if (props.type === "landingHeader" && latitude && longitude) {
+    console.log(2);
+
     findCity();
-    return (<span>{city + ", " + street} </span>)
-  }
-  else if(props.type === "cityOnly")
-  {
-    findCity();
-    return (<span>{city} </span>)
-  }
-  else if (props.type === "landingHeader")
-  {
-    findCity();
-    return (<div></div>)
-  }
-   else {
-    findCity();
-    return {city}
+        return <span>Set Your Location</span>;
+
+  } else if (props.type === "streetCity") {
+    console.log(3);
+
+    window.setTimeout(findCity(), 2000);
+    return <span>{city + ", " + street} </span>;
+  } else if (props.type === "cityOnly") {
+    console.log(4);
+
+    window.setTimeout(findCity, 2000);
+    return <span>{city} </span>;
+  } else if (!latitude || !longitude) {
+    console.log(5);
+    return <span>Set Your Location</span>;
+  } else {
+    // findCity();
+    return null;
   }
 };
 
