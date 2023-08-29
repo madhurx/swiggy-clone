@@ -59,11 +59,12 @@ const LocationComponent = (props) => {
     const response = await fetch(`http://api.positionstack.com/v1/reverse?access_key=94879775d244c5294fe269e656af45ef&query=${latitude},${longitude}`);
     const res = await response.json();
     const json = await res?.data[0];
+    console.log(json);
     await dispatch(getStreet(json?.street ));
     await dispatch(getCity(json?.county ));
   }
 
-  if (!latitude || !longitude) {
+  if ((!latitude || !longitude) && (props.type === "body")) {
     return <span>Set Your Location</span>;
   }
   else if(props.type === "streetCity")
@@ -75,6 +76,11 @@ const LocationComponent = (props) => {
   {
     findCity();
     return (<span>{city} </span>)
+  }
+  else if (props.type === "landingHeader")
+  {
+    findCity();
+    return (<div></div>)
   }
    else {
     findCity();

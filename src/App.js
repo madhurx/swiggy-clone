@@ -6,6 +6,8 @@ import store from './utils/redux/store';
 import LandingPage from "./Components/LandingPage/LandingPage";
 
 function App() {
+  // const latitude = store.getState().location.coordinates.latitude;
+  // const longitude = store.getState().location.coordinates.longitude;
 
   return (
     <Provider store={store}>
