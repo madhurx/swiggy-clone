@@ -10,7 +10,9 @@ function App() {
   return (
     <Provider store={store}>
       <LandingPage/>
-      {/* <Head />  */}
+      <Head /> 
+      <Body /> 
+      <Footer /> 
     </Provider>
   );
 }
